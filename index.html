@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Node.js - Edward Zhu</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/node_js.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -41,19 +41,199 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
+					<h1>Node.js</h1>
+					<h3>Serverside Javascript</h3>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small>Created by <a href="http://edwardzhu.me">Edward Zhu</a> / <a href="http://twitter.com/zhued">@zhued</a></small>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Why node.js?</h2>
+					<p>
+						Node's goal is to provide an easy way to build scalable network applications.
 					</p>
 				</section>
 
 				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
+					<section id="fragments">
+						<h2>What exactly is Node.js?</h2>
+						<p class="fragment">
+						Built on Chrome's V8 JavaScript runtime written in C++.
+						</p>
+						<p class="fragment">
+						Can handle thousands of concurrent connections with minimun overhead on a single process.
+						</p>
+						
+						<p class="fragment">
+						Uses an event-driven, non-blocking I/O model.
+						</p>
+
+					</section>
 				</section>
+
+				<section>
+					<section>
+						<h2>Traditional Web-Serving</h2>
+						<img src="lib/img/traditional.png"></img>
+					</section>
+					<section>
+						<h2>Traditional Web-Serving</h2>
+						<p>Each connection spawns a new thread.</p>
+						<p>Takes up too much system RAM.</p>
+						<p>Will eventually max out RAM availible.</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Node.js Approach</h2>
+						<img src="lib/img/nodejs.png"></img>
+					</section>
+					<section>
+						<h2>Node.js Approach</h2>
+						<p>Operates on a single thread.</p>
+						<p>Using non-blocking I/O calls.</p>
+						<p>Supports tens of thousands of concurrent connections.</p>
+					</section>
+				</section>
+
+				
+				<section>
+					<section>
+						<h2>Basic Implementations</h2>
+						<pre><code data-trim contenteditable>
+var http = require('http');
+
+var server = http.createServer(function(req, res) {
+  res.writeHead(200);
+  res.end('Hello Http');
+});
+server.listen(8080);
+						</code></pre>
+					</section>
+					<section>
+						<h2>Notice</h2>
+						<p>
+						The code doesn't exit right away.
+						</p>
+						<p>
+						Node programs will always run until it's certain that no further events are possible.
+						</p>
+					</section>
+					<section>
+						<h2>Step by Step</h2>
+						<pre><code data-trim contenteditable>
+var http = require('http');
+						</code></pre>
+						<p>Include the http core module and assign it to a variable called http.</p>
+					</section>
+					<section>
+						<h2>Step by Step</h2>
+						<pre><code data-trim contenteditable>
+var server = http.createServer(function(req, res) {
+  res.writeHead(200);
+  res.end('Hello Http');
+});
+						</code></pre>
+						<p>Create a variable called server by calling http.createServer.</p>
+						<p>The argument passed into this call is a closure that is called whenever an http request comes in.</p>
+					</section>
+					<section>
+						<h2>Step by Step</h2>
+						<pre><code data-trim contenteditable>
+server.listen(8080);
+						</code></pre>
+						<p>We call server.listen(8080) to tell node.js the port on which we want our server to run.</p>
+						<p>It's that simple!</p>
+					</section>
+				</section>
+
+
+				<!-- Node package manager -->
+
+				<section>
+					<section>
+					<h2>Node Package Manager (NPM)</h2>
+					<p>
+						Node's built-in support for package management is a beloved feature by developers.
+					</p>
+					</section>
+					
+					<section>
+					<h2>NPM Basics</h2>
+					<p>
+						Very similar to Ruby Gems.
+					</p>
+					<p>
+						Set of publicly available, reusable components that have all sorts of functionalities.
+					</p>
+					</section>
+
+					<section>
+					<h2>Simple Imports</h2>
+					<pre><code data-trim contenteditable>
+npm install mysql
+					</code></pre>
+					<p>
+						Simply install the package. In this case, mysql.
+					</p>
+					<pre><code data-trim contenteditable>
+var mysql = require('mysql');
+					</code></pre>
+					<p>
+						And name it a variable to use!
+					</p>
+					</section>
+
+					<section>
+					<h2>Popular Node Modules</h2>
+					<p>
+						<a href="http://expressjs.com/">express</a> - web-dev framework
+					</p>
+					<p>
+						<a href="https://github.com/senchalabs/connect#readme">connect</a> - HTTP server framework
+					</p>
+					<p>
+						<a href="https://www.npmjs.com/package/mongodb">mongodb</a> - mongoDB wrappers for the MongoDB API
+					</p>
+					<p>
+						<a href="http://jade-lang.com/">Jade</a> - templating engine
+					</p>
+					</section>
+
+				</section>
+
+				<section>
+					<h2>Pitfalls</h2>
+					<p>Heavy computation could choke up single thread, blocking incoming threads.</p>
+					<p>Developers need to be careful when allowing exceptions for Node's event loop.</p>
+					
+				</section>
+
+
+
+				<section>
+					<h2>Who uses Node.js?</h2>
+					<p></p>
+					<p></p>
+					
+				</section>
+
+
+
+				<section></section>
+				<section></section>
+
+
+
+
+
+
+
+<!-- Not my stuff -->
+
 
 				<!-- Example of nested vertical slides -->
 				<section>
@@ -73,7 +253,6 @@
 					<section>
 						<h2>Basement Level 2</h2>
 						<p>That's it, time to go back up.</p>
-						<br>
 						<a href="#/2">
 							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
 						</a>
@@ -389,7 +568,7 @@ Reveal.addEventListener( 'customevent', function() {
 				history: true,
 				center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
 				dependencies: [
